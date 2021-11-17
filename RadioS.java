@@ -204,7 +204,7 @@ public class RadioS implements Radio{
                 System.out.print("Ingresa el nombre de la cancion que deseas buscar: ");
                 datos = sn.nextLine();
 
-                FileReader leer = new FileReader("Emisoras.txt");
+                FileReader leer = new FileReader("Canciones.txt");
                 BufferedReader canciones = new BufferedReader(leer);
 
                 while(sc.hasNext()){   
@@ -241,7 +241,7 @@ public class RadioS implements Radio{
                 System.out.print("Ingresa el nombre de la cancion que deseas buscar: ");
                 datos = sn.nextLine();
 
-                FileReader leer = new FileReader("Emisoras.txt");
+                FileReader leer = new FileReader("Canciones.txt");
                 BufferedReader canciones = new BufferedReader(leer);
 
                 while(sc.hasNext()){   
@@ -282,9 +282,59 @@ public class RadioS implements Radio{
         }
         if (opcion == 2){
             System.out.println("\nMostrando contactos..."+ contactos); //Persistencia.
+            String contenido = "";
+
+            try {
+                //Creamos un archivo FileReader que obtiene lo que tenga el archivo
+                FileReader leer = new FileReader("Contactos.txt");
+
+                //El contenido de lector se guarda en un BufferedReader
+                BufferedReader contactos = new BufferedReader(leer);
+
+                //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
+                while((contenido = contactos.readLine()) != null) {
+                System.out.println(contenido);
+                }   
+            } catch(Exception e) { 
+                System.out.println("ERROR EN LA CARGA DE CONTACTOS");
+            }
         }
         if (opcion == 3){
-            System.out.println("\nLlamando contacto..."); //Persistencia.
+            Scanner sc;
+            Scanner sn = new Scanner(System.in);
+            String contenido = " ";
+            boolean contains = false;
+            String datos;
+    
+            try {
+            
+                sc = new Scanner(new File("Contactos.txt"));
+                System.out.print("Ingresa el nombre del contacto a llamar: ");
+                datos = sn.nextLine();
+
+                FileReader leer = new FileReader("Contactos.txt");
+                BufferedReader canciones = new BufferedReader(leer);
+
+                while(sc.hasNext()){   
+                    contenido = sc.nextLine();
+                    if (contenido.contains(datos)) {        
+                        System.out.println("\n" + contenido);
+                        contenido = sc.nextLine(); 
+                        System.out.println(contenido);
+                        contenido = sc.nextLine(); 
+                        contains = true;
+                    }
+                } if (!contains){
+
+                    System.out.println("\nNo hay ningun contacto con ese nombre, debe agregarla\n");
+                }
+
+            } catch (NoSuchElementException e) {
+                System.out.println("\nLLAMANDO...\n");
+
+            } catch (Exception e) { 
+                System.out.println("\nERROR EN LA CARGA DE CONTACTOS\n");
+            }
         }
         if (opcion == 4){
             System.out.println("\nDesea cambiar a bocinas o auriculares? \n1. Bocinas. \n2. Auriculares."); //Pide escoger la entrada de sonido.
