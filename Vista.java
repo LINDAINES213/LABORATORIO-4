@@ -1,3 +1,9 @@
+/**
+* Clase Controlador del programa
+* @author Mario Guerra y Linda Jiménez
+* @version 16/11/2021
+*/
+
 import java.util.Scanner;
 
 public class Vista {

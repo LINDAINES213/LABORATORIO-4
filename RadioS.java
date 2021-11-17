@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -81,11 +87,65 @@ public class RadioS implements Radio{
            }
        }
         if (opcion == 3){
-           System.out.println("\nCambio de estacion."); //Persistencia.
-       }
+
+            Scanner sc;
+            Scanner sn = new Scanner(System.in);
+            String contenido = " ";
+            boolean contains = false;
+            String nombreofrecuencia;
+    
+            try {
+            
+                sc = new Scanner(new File("Emisoras.txt"));
+                System.out.print("Ingresa el nombre, o la frecuencia de la emisora que deseas buscar: ");
+                nombreofrecuencia = sn.nextLine();
+
+                FileReader leer = new FileReader("Emisoras.txt");
+                BufferedReader emisoras = new BufferedReader(leer);
+
+                while(sc.hasNext()){   
+                    contenido = sc.nextLine();
+                    if (contenido.contains(nombreofrecuencia)) {        
+                        System.out.println("\n" + contenido);
+                        contenido = sc.nextLine(); 
+                        System.out.println(contenido);
+                        contenido = sc.nextLine(); 
+                        contains = true;
+                    }
+                } if (!contains){
+
+                    System.out.println("\nNo hay ninguna emisora con ese nombre o frecuencia, debe agregarla\n");
+                }
+
+            } catch (NoSuchElementException e) {
+                System.out.println("\nEMISORA CAMBIADA\n");
+
+            } catch (Exception e) { 
+                System.out.println("\nERROR EN LA CARGA DE EMISORAS\n");
+            }
+        }
         if (opcion == 4){
-           System.out.println("\nNueva emisora agregada."); //Persistencia.
-       }
+
+            File Emisoras = new File("Emisoras.txt");
+            Scanner sn = new Scanner(System.in);
+            String nombre;
+            String frecuencia;
+
+            try {
+                FileWriter fw = new FileWriter(Emisoras, true);
+                System.out.println("Ingrese el nombre de la emisora: ");
+                nombre = sn.nextLine();
+                fw.write("\nNOMBRE DE LA EMISORA: " + nombre + "\n");
+                System.out.println("Ingrese la frecuencia de la emisora: ");
+                frecuencia = sn.nextLine();
+                fw.write("FRECUENCIA: " + frecuencia + " FM\n");
+                fw.close();
+                System.out.println("Emisora Agregada");
+            } catch (IOException e) {
+                System.out.println("NO FUE POSIBLE AGREGAR LA EMISORA! INTENTE DE NUEVO");
+            }
+
+        }
         if (opcion == 5){
            System.out.println("\nEmisora cargada."); //Persistencia.
        }
@@ -110,13 +170,100 @@ public class RadioS implements Radio{
         System.out.println("\nQue desea hacer? \n1. Seleccionar lista de reproduccion. \n2. Cambio de canciones. \n3. Ver datos de canción.");
         opcion = scan.nextInt();
         if (opcion == 1){
-            System.out.println("\nSeleccionando lista de reproduccion..."); //Persistencia.
+
+            System.out.println("\nSeleccionando lista de reproduccion..."); 
+            File Emisoras = new File("Canciones.txt");
+            Scanner sn = new Scanner(System.in);
+            String nombre;
+            String artista;
+
+            try {
+                FileWriter fw = new FileWriter(Emisoras, true);
+                System.out.println("Ingrese el nombre de la cancion: ");
+                nombre = sn.nextLine();
+                fw.write("\nNOMBRE DE LA CANCION: " + nombre + "\n");
+                System.out.println("Ingrese el artista de la cancion: ");
+                artista = sn.nextLine();
+                fw.write("ARTISTA: " + artista + " FM\n");
+                fw.close();
+                System.out.println("Cancion Agregada");
+            } catch (IOException e) {
+                System.out.println("NO FUE POSIBLE AGREGAR LA CANCION! INTENTE DE NUEVO");
+            }
         }
         if (opcion == 2){
-            System.out.println("\nCambiando cancion..."); //Persistencia.
+            Scanner sc;
+            Scanner sn = new Scanner(System.in);
+            String contenido = " ";
+            boolean contains = false;
+            String datos;
+    
+            try {
+            
+                sc = new Scanner(new File("Canciones.txt"));
+                System.out.print("Ingresa el nombre de la cancion que deseas buscar: ");
+                datos = sn.nextLine();
+
+                FileReader leer = new FileReader("Emisoras.txt");
+                BufferedReader canciones = new BufferedReader(leer);
+
+                while(sc.hasNext()){   
+                    contenido = sc.nextLine();
+                    if (contenido.contains(datos)) {        
+                        System.out.println("\n" + contenido);
+                        contenido = sc.nextLine(); 
+                        System.out.println(contenido);
+                        contenido = sc.nextLine(); 
+                        contains = true;
+                    }
+                } if (!contains){
+
+                    System.out.println("\nNo hay ninguna cancion con ese nombre, debe agregarla\n");
+                }
+
+            } catch (NoSuchElementException e) {
+                System.out.println("\nCANCION CAMBIADA\n");
+
+            } catch (Exception e) { 
+                System.out.println("\nERROR EN LA CARGA DE CANCIONES\n");
+            }
         }
         if (opcion == 3){
-            System.out.println("\nViendo datos de cancion..."); //Persistencia.
+            Scanner sc;
+            Scanner sn = new Scanner(System.in);
+            String contenido = " ";
+            boolean contains = false;
+            String datos;
+    
+            try {
+            
+                sc = new Scanner(new File("Canciones.txt"));
+                System.out.print("Ingresa el nombre de la cancion que deseas buscar: ");
+                datos = sn.nextLine();
+
+                FileReader leer = new FileReader("Emisoras.txt");
+                BufferedReader canciones = new BufferedReader(leer);
+
+                while(sc.hasNext()){   
+                    contenido = sc.nextLine();
+                    if (contenido.contains(datos)) {        
+                        System.out.println("\n" + contenido);
+                        contenido = sc.nextLine(); 
+                        System.out.println(contenido);
+                        contenido = sc.nextLine(); 
+                        contains = true;
+                    }
+                } if (!contains){
+
+                    System.out.println("\nNo hay ninguna cancion con ese nombre, debe agregarla\n");
+                }
+
+            } catch (NoSuchElementException e) {
+                System.out.println("\nCANCION CAMBIADA\n");
+
+            } catch (Exception e) { 
+                System.out.println("\nERROR EN LA CARGA DE CANCIONES\n");
+            }
         }
         else{
             System.out.println("\nElija una opcion que corresponda a las indicadas"); //Pide una opción correcta.

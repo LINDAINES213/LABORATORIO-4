@@ -1,3 +1,9 @@
+/**
+* Clase Controlador del programa
+* @author Mario Guerra y Linda Jiménez
+* @version 16/11/2021
+*/
+
 public class Main {
 
     public static void main(String[] args){
