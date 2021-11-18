@@ -201,7 +201,7 @@ public class RadioA implements Radio{
                 System.out.print("Ingresa el nombre de la cancion que deseas buscar: ");
                 datos = sn.nextLine();
 
-                FileReader leer = new FileReader("Emisoras.txt");
+                FileReader leer = new FileReader("Cabciones.txt");
                 BufferedReader canciones = new BufferedReader(leer);
 
                 while(sc.hasNext()){   
